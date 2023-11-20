@@ -8,7 +8,6 @@ export const handleAddDocs = async (name: string) => {
     const docRef = await addDoc(collection(db, "users"), {
       nickname: name,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -19,7 +18,6 @@ export const handleImageUpload = async (imageUrl: string) => {
     const imageRef = await addDoc(collection(db, "users"), {
       profilePicture: imageUrl,
     });
-    console.log("test");
   } catch (e) {
     console.error(e);
   }

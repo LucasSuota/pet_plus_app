@@ -27,7 +27,6 @@ const Login = () => {
   const signIn = ({ email, password }: Inputs) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        console.log(res.user);
         router.push("/application");
       })
       .catch(() => {

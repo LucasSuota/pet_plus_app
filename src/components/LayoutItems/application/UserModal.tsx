@@ -21,7 +21,6 @@ const UserModal = ({
 
   const handleClick = () => {
     uploadPhotoURL(photo, currentUser);
-    console.log(currentUser.uid);
   };
 
   return (
