@@ -1,20 +1,32 @@
-import { PersonCircle } from "../../../../public/svg";
+import { uploadPhotoURL } from "@/firebase/database/db";
 import { Dialog, Transition } from "@headlessui/react";
-import Image from "next/image";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
-const UserModal = ({ isOpen, setIsOpen }: { isOpen: any; setIsOpen: any }) => {
+const UserModal = ({
+  currentUser,
+  isOpen,
+  setIsOpen,
+}: {
+  currentUser: any;
+  isOpen: any;
+  setIsOpen: any;
+}) => {
+  const [photo, setPhoto] = useState<any>(null);
+
+  const handleFileChange = (e: any) => {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  };
+
+  const handleClick = () => {
+    uploadPhotoURL(photo, currentUser);
+    console.log(currentUser.uid);
+  };
+
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-        >
-          Open dialog
-        </button>
-      </div>
+      <div className="fixed inset-0 flex items-center justify-center"></div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -52,16 +64,11 @@ const UserModal = ({ isOpen, setIsOpen }: { isOpen: any; setIsOpen: any }) => {
                     Configurar Perfil
                   </Dialog.Title>
                   <div className="mt-8 flex flex-col">
-                    <p className="text-sm text-gray-500">Nome de perfil:</p>
-                    <input className="p-2" type="text" placeholder="João..." />
                     <p className="text-sm text-gray-500">Foto de perfil:</p>
-                    <Image
-                      className="mt-10 mb-10 mx-auto"
-                      src={PersonCircle}
-                      alt="carregar foto de perfil"
-                      width={150}
-                      height={150}
-                    />
+                    <div>
+                      <input type="file" onChange={handleFileChange} />
+                      <button onClick={handleClick}>Enviar</button>
+                    </div>
                   </div>
 
                   <div className="mt-8">

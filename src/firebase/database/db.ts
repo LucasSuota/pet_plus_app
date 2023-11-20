@@ -1,5 +1,7 @@
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase";
+import { collection, addDoc, doc, query, where } from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { updateProfile } from "firebase/auth";
 
 export const handleAddDocs = async (name: string) => {
   try {
@@ -12,10 +14,24 @@ export const handleAddDocs = async (name: string) => {
   }
 };
 
-export const handleGetDocs = async ({ currentUser }: any) => {
-  const userId = currentUser.uid;
-  const usersRef = collection(db, "users");
-  const nameQuery = query(usersRef, where("nickname", "==", `${userId}`));
+export const handleImageUpload = async (imageUrl: string) => {
+  try {
+    const imageRef = await addDoc(collection(db, "users"), {
+      profilePicture: imageUrl,
+    });
+    console.log("test");
+  } catch (e) {
+    console.error(e);
+  }
+};
 
-  const querySnapshot = await getDocs(collection(db, "users"));
+export const uploadPhotoURL = async (file: any, user: any) => {
+  try {
+    const fileRef = ref(storage, user.uid + ".png");
+    const snapshot = await uploadBytes(fileRef, file);
+    const photoURL = await getDownloadURL(fileRef);
+    updateProfile(user, { photoURL: photoURL });
+  } catch (error) {
+    console.error(error);
+  }
 };
