@@ -11,8 +11,8 @@ That is the idea of the project.
 
 //features
 
-At the moment you're able to create and account and login, if you want to try it, you can! And of course uploading a profile picture for you account.
+At the moment you're able to create an account and login, if you want to try it, you can! And of course uploading a profile picture for your account.
 Soon I'll be creating the main content of the application, which will allow you to upload pictures of your animal, and of course, list them, as I supposed if the user has more than one pet.
-Yet not complete it, it's responsive.
+Yet not complete, it's responsive.
 
 
