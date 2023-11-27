@@ -1,36 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+//still writing it!
 
-## Getting Started
+If you're trying to find a better way of dealing with your pets' care and health, you've certainly come to right place!
+PET+ is not only a way of organizing the info about your pets, but also a way of simplifying the process!
+Is it hard to grasp what is PET+? Simple here's an example:
 
-First, run the development server:
+-- Ooooh my gosh, I love my cat TOM, but it's a problem for me to write down on a piece of paper, or on my notes, what are the vaccines and other things TOM needs to take, even its basic cares. How could I travel without any concernings if he's going to be ok... 😔
+-- Well you have PET+, just sign in, and add your PET, their info will be on the internet and will make everything easier for both of us and of course TOM, hahaha!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+That is the idea of the project.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+//features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+At the moment you're able to create an account and login, if you want to try it, you can! And of course uploading a profile picture for your account.
+Soon I'll be creating the main content of the application, which will allow you to upload pictures of your animal, and of course, list them, as I supposed if the user has more than one pet.
+Yet not complete, it's responsive.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
