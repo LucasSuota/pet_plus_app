@@ -1,5 +1,6 @@
 import { uploadPhotoURL } from "@/firebase/database/db";
 import { Dialog, Transition } from "@headlessui/react";
+import Image from "next/image";
 import { Fragment, useState } from "react";
 
 const UserModal = ({
@@ -58,26 +59,44 @@ const UserModal = ({
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="flex items-center justify-between text-lg font-medium leading-6 text-gray-900"
                   >
-                    Configurar Perfil
-                  </Dialog.Title>
-                  <div className="mt-8 flex flex-col">
-                    <p className="text-sm text-gray-500">Foto de perfil:</p>
-                    <div>
-                      <input type="file" onChange={handleFileChange} />
-                      <button onClick={handleClick}>Enviar</button>
-                    </div>
-                  </div>
-
-                  <div className="mt-8">
+                    {currentUser.uid}
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="text-md font-bold"
                       onClick={() => setIsOpen(false)}
                     >
-                      Salvar
+                      X
                     </button>
+                  </Dialog.Title>
+                  <div className="mt-8 flex flex-col text-center">
+                    <p className="text-sm text-gray-500 text-center mt-4 mb-4">
+                      Foto de perfil
+                    </p>
+                    <div className="mx-auto">
+                      <label htmlFor="fileInput" className="cursor-pointer">
+                        <Image
+                          className="rounded-full"
+                          src={"/svg/person-circle.svg"}
+                          alt="upload profile picture"
+                          width={160}
+                          height={160}
+                        />
+                      </label>
+                      <input
+                        id="fileInput"
+                        className="hidden"
+                        type="file"
+                        onChange={handleFileChange}
+                      />
+                      <button
+                        className="rounded-md bg-blue-400 px-4 py-2 mt-4"
+                        onClick={handleClick}
+                      >
+                        Atualizar!
+                      </button>
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

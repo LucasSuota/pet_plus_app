@@ -33,3 +33,5 @@ export const uploadPhotoURL = async (file: any, user: any) => {
     console.error(error);
   }
 };
+
+export const handleDocs = async () => {};

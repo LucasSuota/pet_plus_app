@@ -9,7 +9,7 @@ export default function Home() {
         className="mx-auto w-full sm:min-h-[580px] min-h-screen flex flex-col items-center justify-center"
         style={{
           backgroundImage:
-            "linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%), url('/bg_hero.jpeg')",
+            "linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%), url('/images/bg_hero.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "top",
         }}
