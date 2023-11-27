@@ -17,7 +17,7 @@ const ApplicationHeader = () => {
 
   if (currentUser) {
     return (
-      <header className="mx-auto max-w-screen px-4 py-4 flex flex-row items-center justify-between">
+      <header className="absolute w-full mx-auto max-w-screen px-4 py-4 flex flex-row items-center justify-between">
         <div className="relative h-[60px] w-[60px]">
           <Image
             className="cursor-pointer"
@@ -32,7 +32,7 @@ const ApplicationHeader = () => {
           <Menu.Button className="relative h-[60px] w-[60px]">
             {
               <Image
-                className="rounded-full"
+                className="rounded-full cursor-pointer"
                 src={currentUser.photoURL}
                 alt="foto de perfil"
                 fill
