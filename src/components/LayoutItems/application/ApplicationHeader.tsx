@@ -15,7 +15,7 @@ const ApplicationHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  if (currentUser.photoURL) {
+  if (currentUser) {
     return (
       <header className="mx-auto max-w-screen px-4 py-4 flex flex-row items-center justify-between">
         <div className="relative h-[60px] w-[60px]">
@@ -27,6 +27,7 @@ const ApplicationHeader = () => {
             fill
           />
         </div>
+
         <Menu as="div" className="relative">
           <Menu.Button className="relative h-[60px] w-[60px]">
             {

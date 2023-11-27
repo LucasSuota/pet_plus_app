@@ -21,3 +21,5 @@ export type HeadeMenuType = {
 export type User = {
   email?: string;
 };
+
+export type FileEventTarget = EventTarget & { files: FileList };
