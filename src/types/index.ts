@@ -23,3 +23,10 @@ export type User = {
 };
 
 export type FileEventTarget = EventTarget & { files: FileList };
+
+export type AnimalCardType = {
+  animalName: string;
+  animalGender: string;
+  animalAge: string;
+  animalBio: string;
+};
