@@ -8,6 +8,10 @@ import { child, get, getDatabase, ref } from "firebase/database";
 import { AuthContext } from "@/context/AuthContext";
 import AnimalCard from "./AnimalCard";
 import { AnimalDataType } from "@/types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/bundle";
+import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const ApplicationBody = () => {
   const currentUser = useContext(AuthContext);
@@ -23,7 +27,6 @@ const ApplicationBody = () => {
 
         if (snapshot.exists()) {
           setAnimalData(snapshot.val());
-          console.log(snapshot.val());
         }
       } catch (error) {
         console.error(error);
@@ -36,10 +39,29 @@ const ApplicationBody = () => {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center">
       {animalData && (
-        <div className="w-full items-center justify-center flex flex-col sm:flex-row gap-10">
-          {Object.keys(animalData).map((animalName) => (
-            <AnimalCard key={animalName} animal={animalData[animalName]} />
-          ))}
+        <div className="w-full items-center justify-center flex flex-row sm:flex-row">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 10,
+              stretch: 2,
+              depth: 100,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            pagination={true}
+            modules={[EffectCoverflow, Pagination]}
+            className="mySwiper"
+          >
+            {Object.keys(animalData).map((animalName) => (
+              <SwiperSlide key={animalName}>
+                <AnimalCard animal={animalData[animalName]} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       )}
       {PlusCircle && (
