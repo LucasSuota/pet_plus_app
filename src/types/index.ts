@@ -13,6 +13,16 @@ export type RegisterInputs = {
   confirmPassword: string;
 };
 
+export type AddAnimalInputs = {
+  name: string;
+  bio: string;
+}
+
+export type AnimalDataType = {
+  name: string;
+  bio: string;
+}
+
 export type HeadeMenuType = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

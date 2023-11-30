@@ -51,12 +51,6 @@ const AnimalModal = ({
                     <span className="text-sm text-gray-500 text-center mt-4 mb-10">
                       <AddAnimalForm />
                     </span>
-                    <div className="mx-auto">
-                      <label
-                        htmlFor="fileInput"
-                        className="cursor-pointer animate-pulse"
-                      ></label>
-                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

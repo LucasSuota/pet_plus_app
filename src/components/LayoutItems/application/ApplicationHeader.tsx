@@ -17,27 +17,29 @@ const ApplicationHeader = () => {
 
   if (currentUser) {
     return (
-      <header className="absolute w-full mx-auto max-w-screen px-4 py-4 flex flex-row items-center justify-between">
+      <header className="fixed w-full mx-auto p-4 flex flex-row items-center justify-between bg-white">
         <div className="relative h-[60px] w-[60px]">
-          <Image
-            className="cursor-pointer"
-            onClick={() => router.push("/")}
-            src={Logo}
-            alt="logo"
-            fill
-          />
+          {Logo && (
+            <Image
+              className="cursor-pointer"
+              onClick={() => router.push("/")}
+              src={Logo}
+              alt="logo"
+              fill
+            />
+          )}
         </div>
 
         <Menu as="div" className="relative">
           <Menu.Button className="relative h-[60px] w-[60px]">
-            {
+            {currentUser.photoURL && (
               <Image
                 className="rounded-full cursor-pointer"
                 src={currentUser.photoURL}
                 alt="foto de perfil"
                 fill
               />
-            }
+            )}
           </Menu.Button>
           <Menu.Items
             className={

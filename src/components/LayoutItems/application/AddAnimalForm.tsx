@@ -1,20 +1,28 @@
 "use client";
 
-import { RegisterInputs } from "@/types";
-import Link from "next/link";
-import { Controller, useForm } from "react-hook-form";
+import { AuthContext } from "@/context/AuthContext";
+import { db } from "@/firebase/firebase";
+import { AddAnimalInputs } from "@/types";
+import { ref, set } from "firebase/database";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 
 const AddAnimalForm = () => {
+  const currentUser = useContext(AuthContext);
+
   const {
+    register,
     handleSubmit,
-    control,
     formState: { errors },
-  } = useForm<RegisterInputs>({
+  } = useForm<AddAnimalInputs>({
     mode: "all",
   });
 
-  const handleSubmitData = (data: RegisterInputs) => {
-    console.log(data);
+  const handleSubmitData = (data: AddAnimalInputs) => {
+    set(ref(db, "users/" + currentUser.uid + "/" + data.name), {
+      name: data.name,
+      bio: data.bio,
+    });
   };
 
   return (
@@ -26,37 +34,19 @@ const AddAnimalForm = () => {
         <div className="flex flex-col items-center justify-center">
           <div className="w-full flex flex-col items-start">
             <label className="text-sm text-gray-600 mb-1">Nome</label>
-            <Controller
-              name="name"
-              control={control}
-              rules={{ required: "Nome é necessário" }}
-              render={({ field }) => (
-                <input
-                  className="w-full bg-gray-200 rounded-md p-2 mb-2"
-                  {...field}
-                />
-              )}
+            <input
+              className="w-full bg-gray-200 rounded-md p-2 mb-2"
+              {...register("name")}
             />
-            {errors.name && (
-              <span className="text-gray-400 text-sm">
-                {errors.name.message}
-              </span>
-            )}
             <label className="text-sm text-gray-600 mb-1">Bio</label>
             <input
               className="w-full bg-gray-200 rounded-md p-2 mb-2"
-              type="text"
+              {...register("bio")}
             />
-
-            {errors.name && (
-              <span className="text-gray-400 text-sm">
-                {errors.name.message}
-              </span>
-            )}
           </div>
         </div>
         <button
-          className="cursor-pointer bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg"
+          className="cursor-pointer bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
           type="submit"
         >
           Adicionar
