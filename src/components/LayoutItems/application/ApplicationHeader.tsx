@@ -17,7 +17,7 @@ const ApplicationHeader = () => {
 
   if (currentUser) {
     return (
-      <header className="fixed w-full mx-auto p-4 flex flex-row items-center justify-between bg-white">
+      <header className="fixed w-full z-40 mx-auto p-4 flex flex-row items-center justify-between bg-white">
         <div className="relative h-[60px] w-[60px]">
           {Logo && (
             <Image

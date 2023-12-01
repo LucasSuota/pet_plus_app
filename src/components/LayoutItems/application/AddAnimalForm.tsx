@@ -1,14 +1,26 @@
 "use client";
 
 import { AuthContext } from "@/context/AuthContext";
-import { db } from "@/firebase/firebase";
+import { db, storage } from "@/firebase/firebase";
 import { AddAnimalInputs } from "@/types";
-import { ref, set } from "firebase/database";
-import { useContext } from "react";
+import { ref as refDatabase, set as setDatabase } from "firebase/database";
+import {
+  getDownloadURL,
+  ref as refStorage,
+  uploadBytes,
+} from "firebase/storage";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddAnimalForm = () => {
   const currentUser = useContext(AuthContext);
+  const [photo, setPhoto] = useState<any>(null);
+
+  const handlePhotoChange = async (e: any) => {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  };
 
   const {
     register,
@@ -18,17 +30,32 @@ const AddAnimalForm = () => {
     mode: "all",
   });
 
-  const handleSubmitData = (data: AddAnimalInputs) => {
-    set(ref(db, "users/" + currentUser.uid + "/" + data.name), {
-      name: data.name,
-      bio: data.bio,
-    });
+  const handleSubmitData = async (data: AddAnimalInputs) => {
+    try {
+      const pictureRef = refStorage(
+        storage,
+        `pictures/${currentUser.uid}/${data.name}`
+      );
+      await uploadBytes(pictureRef, photo);
+      await getDownloadURL(pictureRef).then((url) => {
+        setDatabase(
+          refDatabase(db, "users/" + currentUser.uid + "/" + data.name),
+          {
+            name: data.name,
+            bio: data.bio,
+            picture: url,
+          }
+        );
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <>
       <form
-        className="w-full flex flex-col items-center justify-between"
+        className="w-full flex flex-col items-center justify-between "
         onSubmit={handleSubmit(handleSubmitData)}
       >
         <div className="flex flex-col items-center justify-center">
@@ -43,6 +70,7 @@ const AddAnimalForm = () => {
               className="w-full bg-gray-200 rounded-md p-2 mb-2"
               {...register("bio")}
             />
+            <input onChange={handlePhotoChange} type="file"></input>
           </div>
         </div>
         <button

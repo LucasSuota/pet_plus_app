@@ -16,12 +16,13 @@ export type RegisterInputs = {
 export type AddAnimalInputs = {
   name: string;
   bio: string;
-}
+  picture: string;
+};
 
 export type AnimalDataType = {
   name: string;
   bio: string;
-}
+};
 
 export type HeadeMenuType = {
   isOpen: boolean;

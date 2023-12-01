@@ -7,7 +7,6 @@ import AnimalModal from "./AnimalModal";
 import { child, get, getDatabase, ref } from "firebase/database";
 import { AuthContext } from "@/context/AuthContext";
 import AnimalCard from "./AnimalCard";
-import { AnimalDataType } from "@/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/bundle";
@@ -15,6 +14,7 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const ApplicationBody = () => {
   const currentUser = useContext(AuthContext);
+  const [photo, setPhoto] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [animalData, setAnimalData] = useState<any>();

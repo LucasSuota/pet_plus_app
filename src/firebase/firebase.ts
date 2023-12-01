@@ -24,4 +24,4 @@ if (app.name && typeof window !== "undefined") {
 export const auth = getAuth(app);
 export const db = getDatabase(app);
 export const dabatase = getFirestore(app);
-export const storage = getStorage(app);
+export const storage = getStorage();

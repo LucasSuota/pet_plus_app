@@ -2,12 +2,11 @@ import React from "react";
 
 const AnimalCard = (animal: any) => {
   return (
-    <div className="w-4/5 mx-auto sm:w-2/5 bg-white rounded-xl shadow-xl flex flex-col mt-32">
+    <div className="w-4/5 mx-auto sm:w-4/5 bg-[#f1f1f1] rounded-xl flex flex-col mt-20">
       <div
-        className="h-[400px] sm:h-[500px] rounded-t-md flex items-end justify-center"
+        className="h-[300px] sm:h-[400px] rounded-t-md flex items-end justify-center"
         style={{
-          backgroundImage:
-            "linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url('/images/dogex.jpg')",
+          backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url('${animal.animal.picture}')`,
           backgroundSize: "cover",
         }}
       >
@@ -17,7 +16,7 @@ const AnimalCard = (animal: any) => {
       </div>
 
       <div className="py-8 px-8">
-        <p className="text-[#3a3a3a] font-black text-xl">{animal.animal.bio}</p>
+        <p className="text-[#3a3a3a] font-black text-md">{animal.animal.bio}</p>
       </div>
     </div>
   );
