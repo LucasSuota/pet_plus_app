@@ -14,7 +14,7 @@ export default function Home() {
           backgroundPosition: "top",
         }}
       >
-        <div className="sm:mx-2 max-w-screen-xl mx-10">
+        <div className="sm:mx-2 max-w-screen-lg mx-10">
           <h1 className="text-white text-4xl font-bold mt-10">Sobre:</h1>
           <p className="text-white sm:text-2xl text-xl mt-2">
             Nós procuramos uma maneira de simplificar o cuidado do seu bichinho,

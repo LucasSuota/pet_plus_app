@@ -63,18 +63,18 @@ const AddAnimalForm = () => {
             <label className="text-sm text-gray-600 mb-1">Nome</label>
             <input
               className="w-full bg-gray-200 rounded-md p-2 mb-2"
-              {...register("name")}
+              {...register("name", { required: "Preencha o nome" })}
             />
             <label className="text-sm text-gray-600 mb-1">Bio</label>
             <input
               className="w-full bg-gray-200 rounded-md p-2 mb-2"
-              {...register("bio")}
+              {...register("bio", { required: "Preencha a bio" })}
             />
             <input onChange={handlePhotoChange} type="file"></input>
           </div>
         </div>
         <button
-          className="cursor-pointer bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
+          className="cursor-pointer disabled:bg-slate-500 bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
           type="submit"
         >
           Adicionar

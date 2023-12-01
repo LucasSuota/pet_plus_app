@@ -61,7 +61,7 @@ const Login = () => {
               )}
             />
             {errors.email && (
-              <p className="text-gray-400 text-sm">{errors.email.message}</p>
+              <p className="text-red-400 text-sm">{errors.email.message}</p>
             )}
           </div>
           <div className="flex flex-col items-start">
@@ -81,12 +81,12 @@ const Login = () => {
               )}
             />
             {errors.password && (
-              <p className="text-gray-400 text-sm">{errors.password.message}</p>
+              <p className="text-red-400 text-sm">{errors.password.message}</p>
             )}
           </div>
         </div>
         {displayError ? (
-          <p className="text-red-500 text-sm">Credenciais erradas</p>
+          <p className="text-red-400 text-sm">Credenciais erradas</p>
         ) : null}
 
         <button

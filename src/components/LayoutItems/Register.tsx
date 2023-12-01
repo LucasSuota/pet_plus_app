@@ -7,7 +7,6 @@ import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { handleAddDocs } from "@/firebase/database/db";
 
 const Login = () => {
   const [emailError, setEmailError] = useState(false);
@@ -26,9 +25,8 @@ const Login = () => {
     signUp(data);
   };
 
-  const signUp = ({ name, email, password }: RegisterInputs) => {
+  const signUp = ({ email, password }: RegisterInputs) => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() => handleAddDocs(name))
       .then(() => {
         router.push("/login");
       })
@@ -46,22 +44,6 @@ const Login = () => {
       >
         <div className="flex flex-col items-center justify-center">
           <div className="w-full flex flex-col items-start">
-            <label className="text-sm text-gray-600 mb-1">Nome</label>
-            <Controller
-              name="name"
-              control={control}
-              rules={{ required: "Nome é necessário" }}
-              render={({ field }) => (
-                <input
-                  className="w-full bg-gray-200 rounded-md p-2 mb-2"
-                  {...field}
-                />
-              )}
-            />
-            {errors.name && (
-              <p className="text-gray-400 text-sm">{errors.name.message}</p>
-            )}
-
             <label className="text-sm text-gray-600 mb-1">Email</label>
             <Controller
               name="email"
@@ -81,7 +63,7 @@ const Login = () => {
               )}
             />
             {errors.email && (
-              <p className="text-gray-400 text-sm">{errors.email.message}</p>
+              <p className="text-red-400 text-sm">{errors.email.message}</p>
             )}
           </div>
           <div className="flex flex-col items-start">
@@ -105,7 +87,7 @@ const Login = () => {
               )}
             />
             {errors.password && (
-              <p className="text-gray-400 text-sm">{errors.password.message}</p>
+              <p className="text-red-400 text-sm">{errors.password.message}</p>
             )}
             <label className="text-sm text-gray-600 mb-1">
               Confirmar Senha
@@ -127,7 +109,7 @@ const Login = () => {
               )}
             />
             {errors.confirmPassword && (
-              <p className="text-gray-400 text-sm">
+              <p className="text-red-400 text-sm">
                 {errors.confirmPassword.message}
               </p>
             )}

@@ -43,7 +43,7 @@ const AnimalModal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-10 text-left align-middle  shadow-xl transition-all">
                   <Dialog.Title as="h3" className="flex justify-end">
                     <Image src={Logo} alt="logo" width={25} height={25} />
                   </Dialog.Title>

@@ -3,16 +3,6 @@ import { dabatase, db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 
-export const handleAddDocs = async (name: string) => {
-  try {
-    const docRef = await addDoc(collection(dabatase, "users"), {
-      nickname: name,
-    });
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-};
-
 export const handleImageUpload = async (imageUrl: string) => {
   try {
     const imageRef = await addDoc(collection(dabatase, "users"), {
