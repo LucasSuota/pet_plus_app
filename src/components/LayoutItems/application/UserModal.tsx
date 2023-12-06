@@ -1,5 +1,4 @@
 import { uploadPhotoURL } from "@/firebase/database/db";
-import { FileEventTarget } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { Fragment, useState } from "react";
@@ -13,7 +12,7 @@ const UserModal = ({
   isOpen: boolean;
   setIsOpen: any;
 }) => {
-  const [photo, setPhoto] = useState<any>(null);
+  const [photo, setPhoto] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleFileChange = (e: any) => {

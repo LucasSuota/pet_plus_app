@@ -4,7 +4,7 @@ import Image from "next/image";
 import { PlusCircle } from "../../../../public/svg";
 import { useContext, useEffect, useState } from "react";
 import AnimalModal from "./AnimalModal";
-import { child, get, getDatabase, ref } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
 import { AuthContext } from "@/context/AuthContext";
 import AnimalCard from "./AnimalCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,15 +14,13 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const ApplicationBody = () => {
   const currentUser = useContext(AuthContext);
-  const [photo, setPhoto] = useState(null);
-
   const [isOpen, setIsOpen] = useState(false);
   const [animalData, setAnimalData] = useState<any>();
+  const dbRef = ref(getDatabase());
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dbRef = ref(getDatabase());
         const snapshot = await get(child(dbRef, "users/" + currentUser.uid));
 
         if (snapshot.exists()) {
@@ -34,7 +32,7 @@ const ApplicationBody = () => {
     };
 
     fetchData();
-  }, [currentUser.uid]);
+  }, [animalData]);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center">
