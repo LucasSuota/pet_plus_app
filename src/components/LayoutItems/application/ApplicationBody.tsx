@@ -17,7 +17,6 @@ const ApplicationBody = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [animalData, setAnimalData] = useState<any>();
   const dbRef = ref(getDatabase());
-  const [onlyAnimal, setOnlyAnimal] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +52,7 @@ const ApplicationBody = () => {
             }}
             pagination={true}
             modules={[EffectCoverflow, Pagination]}
-            className="mySwiper"
+            className="mySwiper sm:w-3/4 w-full"
           >
             {Object.keys(animalData).map((animalName) => (
               <SwiperSlide key={animalName}>
