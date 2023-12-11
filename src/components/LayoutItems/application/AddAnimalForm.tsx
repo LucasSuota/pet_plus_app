@@ -135,7 +135,7 @@ const AddAnimalForm = () => {
 
         <p className="mt-2 text-xs">{uploading.toFixed()}%</p>
 
-        {buttonActive ? (
+        {file ? (
           <button
             className="cursor-pointer disabled:bg-slate-500 bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
             type="submit"

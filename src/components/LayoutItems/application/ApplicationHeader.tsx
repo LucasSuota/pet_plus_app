@@ -8,7 +8,12 @@ import { auth } from "@/firebase/firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "@/context/AuthContext";
 import UserModal from "./UserModal";
-import { BoxArrowRight, Gear, Logo } from "../../../../public/svg";
+import {
+  BoxArrowRight,
+  Gear,
+  Logo,
+  PersonCircle,
+} from "../../../../public/svg";
 
 const ApplicationHeader = () => {
   const currentUser = useContext(AuthContext);
@@ -32,10 +37,17 @@ const ApplicationHeader = () => {
 
         <Menu as="div" className="relative">
           <Menu.Button className="relative h-[60px] w-[60px]">
-            {currentUser.photoURL && (
+            {currentUser.photoURL ? (
               <Image
                 className="rounded-full cursor-pointer"
                 src={currentUser.photoURL}
+                alt="foto de perfil"
+                fill
+              />
+            ) : (
+              <Image
+                className="rounded-full cursor-pointer"
+                src={PersonCircle}
                 alt="foto de perfil"
                 fill
               />
