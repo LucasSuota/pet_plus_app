@@ -13,11 +13,13 @@ const UserModal = ({
   setIsOpen: any;
 }) => {
   const [photo, setPhoto] = useState<File | null>(null);
+  const [file, setFile] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
 
   const handleFileChange = (e: any) => {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
+      setFile(URL.createObjectURL(e.target.files[0]));
       setIsLoading(false);
     }
   };
@@ -86,13 +88,23 @@ const UserModal = ({
                         htmlFor="fileInput"
                         className="cursor-pointer animate-pulse"
                       >
-                        <Image
-                          className="rounded-full"
-                          src={"/svg/person-circle.svg"}
-                          alt="upload profile picture"
-                          width={160}
-                          height={160}
-                        />
+                        {file ? (
+                          <Image
+                            className="rounded-xl"
+                            src={file}
+                            alt="upload profile picture"
+                            width={150}
+                            height={150}
+                          />
+                        ) : (
+                          <Image
+                            className="rounded-xl"
+                            src={"/svg/person-circle.svg"}
+                            alt="upload profile picture"
+                            width={150}
+                            height={150}
+                          />
+                        )}
                       </label>
                       <input
                         id="fileInput"

@@ -17,6 +17,7 @@ const ApplicationBody = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [animalData, setAnimalData] = useState<any>();
   const dbRef = ref(getDatabase());
+  const [onlyAnimal, setOnlyAnimal] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {

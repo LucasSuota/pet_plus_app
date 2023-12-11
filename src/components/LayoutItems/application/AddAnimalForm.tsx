@@ -17,12 +17,15 @@ const AddAnimalForm = () => {
   const currentUser = useContext(AuthContext);
   const [photo, setPhoto] = useState<any>(null);
   const [file, setFile] = useState<string>();
-  const [uploading, setUploading] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [uploading, setUploading] = useState(100);
+  const [buttonActive, setButtonActive] = useState(true);
 
   const handlePhotoChange = (e: any) => {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
       setFile(URL.createObjectURL(e.target.files[0]));
+      setIsLoading(false);
     }
   };
 
@@ -47,15 +50,6 @@ const AddAnimalForm = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setUploading(progress);
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
         },
         (error) => {
           console.error(error);
@@ -77,6 +71,20 @@ const AddAnimalForm = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const handleUploading = (): void => {
+      if (uploading != 100) {
+        setButtonActive(false);
+      } else {
+        setButtonActive(true);
+      }
+    };
+
+    handleUploading();
+
+    () => setIsLoading(false);
+  }, [uploading]);
 
   return (
     <>
@@ -124,13 +132,26 @@ const AddAnimalForm = () => {
             />
           </div>
         </div>
-        <button
-          className="cursor-pointer disabled:bg-slate-500 bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
-          type="submit"
-          disabled={false}
-        >
-          Adicionar
-        </button>
+
+        <p className="mt-2 text-xs">{uploading.toFixed()}%</p>
+
+        {buttonActive ? (
+          <button
+            className="cursor-pointer disabled:bg-slate-500 bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
+            type="submit"
+            disabled={false}
+          >
+            Adicionar
+          </button>
+        ) : (
+          <button
+            className="cursor-pointer disabled:bg-slate-500 bg-cyan-600 hover:bg-cyan-700 text-white p-2 rounded-lg mt-10"
+            type="submit"
+            disabled={true}
+          >
+            Enviando...
+          </button>
+        )}
       </form>
     </>
   );
